@@ -6,8 +6,6 @@ A production-ready Machine Learning API that predicts diabetes risk using the CD
 
 ## EDA Insights
 
-### Class Distribution
-![Class Distribution](images/no%20diabetes%20vs%20di...)
 
 ### BMI Distribution
 ![BMI Distribution](images/bmi_distribution.png)
