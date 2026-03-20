@@ -20,6 +20,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from training.mlflow_logger import setup_mlflow, log_params, log_metrics, log_model, log_artifact
+from training.evaluate import run_evaluation
 
 # ── 1. Load Data ──────────────────────────────────────────────
 def load_data():
@@ -40,7 +41,6 @@ def preprocess(df):
 
 # ── 3. Train Model ────────────────────────────────────────────
 def train_model(X_train, y_train):
-    # Handle class imbalance
     scale = (y_train == 0).sum() / (y_train == 1).sum()
 
     params = {
@@ -107,13 +107,12 @@ def main():
         model, params = train_model(X_train, y_train)
         metrics, y_pred, y_prob = evaluate_model(model, X_test, y_test)
 
-        # Log everything to MLflow
         log_params(params)
         log_metrics(metrics)
         log_model(model, "xgboost_model")
 
-        # SHAP
         generate_shap(model, X_test)
+        run_evaluation(model, X_test, y_test, y_pred, y_prob)
         log_artifact("notebooks/shap_summary.png")
 
         print("\n✅ Run logged to MLflow!")
