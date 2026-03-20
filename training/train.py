@@ -92,7 +92,6 @@ def generate_shap(model, X_test):
     plt.figure()
     shap.summary_plot(shap_values, X_test[:500], show=False)
     plt.tight_layout()
-    plt.savefig("notebooks/shap_summary.png")
     plt.close()
     print("SHAP plot saved!")
 
