@@ -4,6 +4,48 @@ A production-ready Machine Learning API that predicts diabetes risk using the CD
 
 ---
 
+## EDA Insights
+
+### Class Distribution
+![Class Distribution](images/no%20diabetes%20vs%20di...)
+
+### BMI Distribution
+![BMI Distribution](images/bmi_distribution.png)
+
+### Correlation Heatmap
+![Correlation Heatmap](images/correlation_heatmap.png)
+
+### Risk Factors
+![Risk Factors](images/risk_factors.png)
+
+### Age Distribution
+![Age Distribution](images/age_distribution.png)
+
+---
+
+## Model Performance
+
+| Metric | Score |
+|--------|-------|
+| AUC | 0.825 |
+| Accuracy | 72.5% |
+| Recall | 78.1% |
+| F1 Score | 0.44 |
+
+### ROC Curve
+![ROC Curve](images/roc_curve.png)
+
+### Confusion Matrix
+![Confusion Matrix](images/confusion_matrix.png)
+
+### Feature Importance
+![Feature Importance](images/feature_importance.png)
+
+### SHAP Summary
+![SHAP Summary](images/shap_summary.png)
+
+---
+
 ## Project Structure
 
 ```
@@ -21,8 +63,8 @@ health-risk-api/
 ├── dashboard/              ← Streamlit frontend
 │   └── streamlit_app.py
 ├── notebooks/              ← EDA + evaluation plots
-│   ├── eda.ipynb
-│   └── *.png
+│   └── eda.ipynb
+├── images/                 ← All plots and charts
 ├── data/                   ← CDC BRFSS dataset
 ├── tests/                  ← API tests
 ├── Dockerfile
@@ -38,17 +80,6 @@ health-risk-api/
 - **Records:** 253,680 survey responses
 - **Features:** 21 health indicators
 - **Target:** Diabetes binary (0 = No Diabetes, 1 = Diabetes)
-
----
-
-## Model Performance
-
-| Metric | Score |
-|--------|-------|
-| AUC | 0.825 |
-| Accuracy | 72.5% |
-| Recall | 78.1% |
-| F1 Score | 0.44 |
 
 ---
 
