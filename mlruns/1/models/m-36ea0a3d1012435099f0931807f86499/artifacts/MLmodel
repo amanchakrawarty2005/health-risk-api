@@ -1,0 +1,23 @@
+artifact_path: file:///C:/Users/LENOVO/Desktop/health-risk-api/mlruns/1/models/m-36ea0a3d1012435099f0931807f86499/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.5
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.7.2
+    skops_trusted_types: null
+mlflow_version: 3.10.1
+model_id: m-36ea0a3d1012435099f0931807f86499
+model_size_bytes: 907652
+model_uuid: m-36ea0a3d1012435099f0931807f86499
+prompts: null
+run_id: 3c26dd881a5942a2ab881d2016774e97
+utc_time_created: '2026-03-20 19:03:45.889935'
