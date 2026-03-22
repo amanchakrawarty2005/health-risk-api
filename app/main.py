@@ -99,3 +99,4 @@ async def root():
         "docs": "/docs",
         "health": "/v1/health"
     }
+    
