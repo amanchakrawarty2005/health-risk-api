@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from evidently.report import Report
-from evidently.metrics import DatasetDriftMetric, DataDriftTable, DatasetMissingValuesSummaryMetric
+from evidently.metrics import DatasetDriftMetric, DataDriftTable
 import os
 from datetime import datetime
 
@@ -48,13 +48,11 @@ def run_drift_report(reference_data, current_data, save_path="notebooks"):
         current_data=current_data
     )
 
-    # Save HTML report
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     html_path = f"{save_path}/drift_report_{timestamp}.html"
     report.save_html(html_path)
     print(f"Drift report saved: {html_path}")
 
-    # Get drift results
     results = report.as_dict()
     drift_detected = results["metrics"][0]["result"]["dataset_drift"]
 
