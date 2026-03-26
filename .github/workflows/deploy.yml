@@ -1,0 +1,48 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Test imports
+        run: |
+          python -c "import fastapi, mlflow, xgboost, shap, pandas; print('All imports OK')"
+
+      - name: Test API structure
+        run: |
+          python -c "from app.schemas import PredictRequest, PredictResponse; print('Schemas OK')"
+          python -c "from app.auth import verify_api_key; print('Auth OK')"
+          python -c "from app.database import init_db; print('Database OK')"
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: |
+          docker build -t health-risk-api .
+          echo "Docker build successful!"
