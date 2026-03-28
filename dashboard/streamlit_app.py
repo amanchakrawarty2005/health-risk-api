@@ -35,9 +35,20 @@ MentHlth = st.sidebar.slider("Poor Mental Health Days (0-30)", 0, 30, 0)
 PhysHlth = st.sidebar.slider("Poor Physical Health Days (0-30)", 0, 30, 0)
 DiffWalk = st.sidebar.selectbox("Difficulty Walking", [0, 1], format_func=lambda x: "Yes" if x == 1 else "No")
 Sex = st.sidebar.selectbox("Sex", [0, 1], format_func=lambda x: "Male" if x == 1 else "Female")
-Age = st.sidebar.slider("Age Group (1=18-24, 13=80+)", 1, 13, 7)
-Education = st.sidebar.slider("Education Level (1-6)", 1, 6, 4)
-Income = st.sidebar.slider("Income Level (1-8)", 1, 8, 4)
+Age = st.sidebar.selectbox("Age Group", 
+    options=list(range(1, 14)),
+    format_func=lambda x: {1:"18-24", 2:"25-29", 3:"30-34", 4:"35-39", 5:"40-44", 6:"45-49", 7:"50-54", 8:"55-59", 9:"60-64", 10:"65-69", 11:"70-74", 12:"75-79", 13:"80+"}[x],
+    index=6)
+
+Education = st.sidebar.selectbox("Education Level",
+    options=list(range(1, 7)),
+    format_func=lambda x: {1:"Never attended school", 2:"Elementary", 3:"Some high school", 4:"High school graduate", 5:"Some college", 6:"College graduate"}[x],
+    index=3)
+
+Income = st.sidebar.selectbox("Income Level",
+    options=list(range(1, 9)),
+    format_func=lambda x: {1:"< $10,000", 2:"$10-15K", 3:"$15-20K", 4:"$20-25K", 5:"$25-35K", 6:"$35-50K", 7:"$50-75K", 8:"> $75,000"}[x],
+    index=3)
 
 col1, col2, col3 = st.columns(3)
 
