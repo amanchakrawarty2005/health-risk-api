@@ -3,7 +3,7 @@ import requests
 import plotly.express as px
 import pandas as pd
 
-API_URL = "http://localhost:8000"
+API_URL = "https://health-risk-api-3fw9.onrender.com"
 API_KEY = "test-key-123"
 
 st.set_page_config(
