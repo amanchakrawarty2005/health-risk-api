@@ -3,8 +3,8 @@ import requests
 import plotly.express as px
 import pandas as pd
 
-API_URL = "https://health-risk-api-3fw9.onrender.com"
-API_KEY = "test-key-123"
+API_URL = st.secrets.get("API_URL", "https://health-risk-api-3fw9.onrender.com")
+API_KEY = st.secrets.get("API_KEY", "test-key-123")
 
 st.set_page_config(
     page_title="Health Risk Prediction Dashboard",
