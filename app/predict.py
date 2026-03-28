@@ -22,9 +22,22 @@ FEATURE_NAMES = [
 def load_model():
     try:
         import joblib
-        model = joblib.load("models/xgboost_model.pkl")
-        print("Model loaded from file!")
-        return model
+        import os
+        
+        possible_paths = [
+            "models/xgboost_model.pkl",
+            "/app/models/xgboost_model.pkl",
+            os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models", "xgboost_model.pkl")
+        ]
+        
+        for path in possible_paths:
+            if os.path.exists(path):
+                model = joblib.load(path)
+                print(f"Model loaded from: {path}")
+                return model
+        
+        print("Model not found in any path!")
+        return None
     except Exception as e:
         print(f"Error loading model: {e}")
         return None
