@@ -21,18 +21,9 @@ FEATURE_NAMES = [
 # ── Load Model ────────────────────────────────────────────────
 def load_model():
     try:
-        # Load latest model from MLflow
-        client = mlflow.tracking.MlflowClient()
-        experiment = client.get_experiment_by_name("health-risk-v1")
-        runs = client.search_runs(
-            experiment_ids=[experiment.experiment_id],
-            order_by=["metrics.auc DESC"],
-            max_results=1
-        )
-        best_run = runs[0]
-        model_uri = f"runs:/{best_run.info.run_id}/xgboost_model"
-        model = mlflow.sklearn.load_model(model_uri)
-        print(f"Model loaded from MLflow run: {best_run.info.run_id}")
+        import joblib
+        model = joblib.load("models/xgboost_model.pkl")
+        print("Model loaded from file!")
         return model
     except Exception as e:
         print(f"Error loading model: {e}")
